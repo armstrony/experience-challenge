@@ -1,0 +1,417 @@
+[
+  {
+    "name": "Starbucks",
+    "location": "The Breeze",
+    "distance": 250,
+    "steps": 400,
+    "calories": 35,
+    "latitude": -6.30191,
+    "longitude": 106.65438,
+    "logo": "starbuckslogo",
+    "img": "starbucksimg",
+    "menu": [
+      {
+        "menuName": "Caramel Macchiato",
+        "price": 52000,
+        "discount": {
+          "tag": "drink",
+          "discountPercentage": 20
+        },
+        "img": "coffeeimg"
+      },
+      {
+        "menuName": "Java Chip Frappuccino",
+        "price": 55000,
+        "discount": {
+          "tag": "drink",
+          "discountPercentage": 0
+        },
+        "img": "coffeeimg"
+      },
+      {
+        "menuName": "Signature Chocolate",
+        "price": 48000,
+        "discount": {
+          "tag": "drink",
+          "discountPercentage": 10
+        },
+        "img": "coffeeimg"
+      },
+      {
+        "menuName": "Classic Croissant",
+        "price": 25000,
+        "discount": {
+          "tag": "food",
+          "discountPercentage": 15
+        },
+        "img": "breadimg"
+      },
+      {
+        "menuName": "New York Cheesecake",
+        "price": 45000,
+        "discount": {
+          "tag": "food",
+          "discountPercentage": 0
+        },
+        "img": "breadimg"
+      }
+    ],
+    "voucher": [
+      {
+        "tag": "bank",
+        "maxDisc": "25",
+        "minUsage": "75",
+        "img": "logovoucher"
+      },
+      {
+        "tag": "ewallet",
+        "maxDisc": "15",
+        "minUsage": "50",
+        "img": "logovoucher"
+      }
+    ]
+  },
+  {
+    "name": "Fore",
+    "location": "The Breeze",
+    "distance": 180,
+    "steps": 300,
+    "calories": 25,
+    "latitude": -6.302514,
+    "longitude": 106.654299,
+    "logo": "forelogo",
+    "img": "foreimg",
+    "menu": [
+      {
+        "menuName": "Aren Latte",
+        "price": 28000,
+        "discount": {
+          "tag": "drink",
+          "discountPercentage": 10
+        },
+        "img": "coffeeimg"
+      },
+      {
+        "menuName": "Pandan Latte",
+        "price": 29000,
+        "discount": {
+          "tag": "drink",
+          "discountPercentage": 0
+        },
+        "img": "coffeeimg"
+      },
+      {
+        "menuName": "Butter Croissant",
+        "price": 22000,
+        "discount": null,
+        "img": "breadimg"
+      }
+    ],
+    "voucher": [
+      {
+        "tag": "ewallet",
+        "maxDisc": "10",
+        "minUsage": "30",
+        "img": "logovoucher"
+      }
+    ]
+  },
+  {
+    "name": "36 Grams",
+    "location": "GOP 1",
+    "distance": 400,
+    "steps": 650,
+    "calories": 55,
+    "latitude": -6.301446,
+    "longitude": 106.650023,
+    "logo": "36gramslogo",
+    "img": "36gramsimg",
+    "menu": [
+      {
+        "menuName": "Manual Brew V60",
+        "price": 35000,
+        "discount": null,
+        "img": "coffeeimg"
+      },
+      {
+        "menuName": "Flat White",
+        "price": 30000,
+        "discount": {
+          "tag": "drink",
+          "discountPercentage": 5
+        },
+        "img": "coffeeimg"
+      }
+    ],
+    "voucher": [
+      {
+        "tag": "bank",
+        "maxDisc": "20",
+        "minUsage": "100",
+        "img": "logovoucher"
+      }
+    ]
+  },
+  {
+    "name": "Tamper",
+    "location": "The Breeze",
+    "distance": 270,
+    "steps": 430,
+    "calories": 38,
+    "latitude": -6.30187,
+    "longitude": 106.65421,
+    "logo": "tamperlogo",
+    "img": "tamperimg",
+    "menu": [
+      {
+        "menuName": "Magic",
+        "price": 38000,
+        "discount": {
+          "tag": "drink",
+          "discountPercentage": 10
+        },
+        "img": "coffeeimg"
+      },
+      {
+        "menuName": "Tamper Big Breakfast",
+        "price": 75000,
+        "discount": {
+          "tag": "food",
+          "discountPercentage": 15
+        },
+        "img": "breadimg"
+      },
+      {
+        "menuName": "Pasta Aglio Olio",
+        "price": 60000,
+        "discount": null,
+        "img": "breadimg"
+      }
+    ],
+    "voucher": [
+      {
+        "tag": "ewallet",
+        "maxDisc": "15",
+        "minUsage": "60",
+        "img": "logovoucher"
+      },
+      {
+        "tag": "bank",
+        "maxDisc": "50",
+        "minUsage": "150",
+        "img": "logovoucher"
+      }
+    ]
+  },
+  {
+    "name": "% Arabica",
+    "location": "The Breeze",
+    "distance": 310,
+    "steps": 500,
+    "calories": 42,
+    "latitude": -6.30179,
+    "longitude": 106.65321,
+    "logo": "arabicalogo",
+    "img": "arabicaimg",
+    "menu": [
+      {
+        "menuName": "Spanish Latte",
+        "price": 58000,
+        "discount": null,
+        "img": "coffeeimg"
+      },
+      {
+        "menuName": "Kyoto Latte",
+        "price": 58000,
+        "discount": null,
+        "img": "coffeeimg"
+      },
+      {
+        "menuName": "Baguette",
+        "price": 35000,
+        "discount": {
+            "tag": "food",
+            "discountPercentage": 5
+        },
+        "img": "breadimg"
+      }
+    ],
+    "voucher": []
+  },
+  {
+    "name": "Kenangan Signature",
+    "location": "The Breeze",
+    "distance": 350,
+    "steps": 580,
+    "calories": 50,
+    "latitude": -6.301535,
+    "longitude": 106.653458,
+    "logo": "kenanganlogo",
+    "img": "kenanganimg",
+    "menu": [
+      {
+        "menuName": "Kopi Kenangan Mantan",
+        "price": 18000,
+        "discount": {
+          "tag": "drink",
+          "discountPercentage": 10
+        },
+        "img": "coffeeimg"
+      },
+      {
+        "menuName": "Milk Tea Gula Aren",
+        "price": 22000,
+        "discount": {
+          "tag": "drink",
+          "discountPercentage": 20
+        },
+        "img": "coffeeimg"
+      },
+      {
+        "menuName": "Roti Cokelat Klasik",
+        "price": 15000,
+        "discount": {
+            "tag": "food",
+            "discountPercentage": 0
+        },
+        "img": "breadimg"
+      }
+    ],
+    "voucher": [
+      {
+        "tag": "ewallet",
+        "maxDisc": "10",
+        "minUsage": "25",
+        "img": "logovoucher"
+      },
+      {
+        "tag": "ewallet",
+        "maxDisc": "12",
+        "minUsage": "40",
+        "img": "logovoucher"
+      }
+    ]
+  },
+  {
+    "name": "Tabemori",
+    "location": "GOP 6",
+    "distance": 520,
+    "steps": 840,
+    "calories": 72,
+    "latitude": -6.302768,
+    "longitude": 106.65347,
+    "logo": "tabemorilogo",
+    "img": "tabemorimg",
+    "menu": [
+      {
+        "menuName": "Chicken Katsu Curry",
+        "price": 65000,
+        "discount": {
+          "tag": "food",
+          "discountPercentage": 10
+        },
+        "img": "breadimg"
+      },
+      {
+        "menuName": "Salmon Teriyaki Don",
+        "price": 75000,
+        "discount": {
+          "tag": "food",
+          "discountPercentage": 5
+        },
+        "img": "breadimg"
+      },
+      {
+        "menuName": "Ocha",
+        "price": 15000,
+        "discount": null,
+        "img": "coffeeimg"
+      }
+    ],
+    "voucher": [
+      {
+        "tag": "ewallet",
+        "maxDisc": "20",
+        "minUsage": "80",
+        "img": "logovoucher"
+      }
+    ]
+  },
+  {
+    "name": "Apple Academy Cafe",
+    "location": "GOP 9",
+    "distance": 600,
+    "steps": 950,
+    "calories": 82,
+    "latitude": -6.302168805766506,
+    "longitude": 106.65218820473441,
+    "logo": "starbuckslogo",
+    "img": "starbucksimg",
+    "menu": [
+      {
+        "menuName": "Developer's Delight Coffee",
+        "price": 30000,
+        "discount": {
+          "tag": "drink",
+          "discountPercentage": 50
+        },
+        "img": "coffeeimg"
+      },
+      {
+        "menuName": "Binary Bites (Cookies)",
+        "price": 20000,
+        "discount": {
+          "tag": "food",
+          "discountPercentage": 20
+        },
+        "img": "breadimg"
+      }
+    ],
+    "voucher": []
+  },
+  {
+    "name": "Lawson",
+    "location": "GOP 6",
+    "distance": 490,
+    "steps": 780,
+    "calories": 68,
+    "latitude": -6.302592,
+    "longitude": 106.65338,
+    "logo": "lawsonlogo",
+    "img": "lawsonimg",
+    "menu": [
+      {
+        "menuName": "Oden Set",
+        "price": 30000,
+        "discount": {
+          "tag": "food",
+          "discountPercentage": 10
+        },
+        "img": "breadimg"
+      },
+      {
+        "menuName": "Karaage Stick",
+        "price": 15000,
+        "discount": null,
+        "img": "breadimg"
+      },
+      {
+        "menuName": "Iced Coffee",
+        "price": 12000,
+        "discount": {
+            "tag": "drink",
+            "discountPercentage": 5
+        },
+        "img": "coffeeimg"
+      }
+    ],
+    "voucher": [
+      {
+        "tag": "ewallet",
+        "maxDisc": "5",
+        "minUsage": "20",
+        "img": "logovoucher"
+      }
+    ]
+  }
+]
