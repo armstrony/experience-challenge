@@ -1,4 +1,4 @@
-# Coffice App (Your Project Name - Change if Needed)
+# Coffice App
 
 ## Project Description
 
