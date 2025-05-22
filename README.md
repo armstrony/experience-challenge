@@ -67,7 +67,7 @@ Below is an overview of the application's user flow and design:
 ## Project Structure (Example)
 
 This project is organized using the MVVM architectural pattern with the following folder structure (can be adapted):
-
+```bash
 ├── ExperienceChallenge
 │   ├── ExplorationChallenge.entitlements
 │   ├── ExplorationChallengeApp.swift
@@ -96,7 +96,7 @@ This project is organized using the MVVM architectural pattern with the followin
 │       └── RouteMapViewModel.swift
 ├── ExperienceChallenge.xcodeproj
 ├── README.md
-
+```
 ## How to Run the Project
 
 1.  Clone this repository.
