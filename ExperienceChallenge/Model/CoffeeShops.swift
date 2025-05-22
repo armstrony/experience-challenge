@@ -2,7 +2,7 @@
 
 import SwiftUI
 import SwiftData
-import CoreLocation // Impor CoreLocation untuk CLLocation dan CLLocationDistance
+import CoreLocation // Impor CoreLocation untuk CLLocation dan CLLocationDistance perubahan dikit
 
 // MARK: - Decodable Structs (Untuk Parsing JSON)
 
