@@ -64,7 +64,7 @@ Below is an overview of the application's user flow and design:
 <br/>
 <br/>
 
-## Project Structure (Example)
+## Project Structure
 
 This project is organized using the MVVM architectural pattern with the following folder structure (can be adapted):
 ```bash
