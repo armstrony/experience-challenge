@@ -48,19 +48,19 @@ Below is an overview of the application's user flow and design:
 
 ### 1. Application User Flow
 
-**(Placeholder for User Flow Image - Replace with your image)**
+![User Flow](./UserFlow.jpg)
 <br/>
 <br/>
 
 ### 2. Lo-Fi (Low Fidelity) Design
 
-**(Placeholder for Lo-Fi Design Image - Replace with your image)**
+![Lo Fi](./Lo-Fi.png)
 <br/>
 <br/>
 
 ### 3. Hi-Fi (High Fidelity) Design
 
-**(Placeholder for Hi-Fi Design Image - Replace with your image)**
+![Hi Fi](./Hi-Fi.png)
 <br/>
 <br/>
 
