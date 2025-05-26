@@ -13,7 +13,13 @@ class RouteMapViewModel: ObservableObject {
     @Published var userHeading: CLLocationDirection? = nil
     @Published var hasArrived: Bool = false
     @Published var ETA: String? = nil
-
+    
+    @Published var sessionSteps: Int = 0
+    @Published var sessionCalories: Double = 0.0 // Kalori dibakar selama sesi ini
+    @Published var motionError: String? = nil // Untuk error terkait gerakan
+    
+    var motionManager : MotionManager // Inisialisasi MotionManager
+    
     @Published var userLocation: CLLocation?
     private var destinationLocation: CLLocationCoordinate2D
     private var destinationName: String
@@ -26,6 +32,7 @@ class RouteMapViewModel: ObservableObject {
         self.destinationName = destination.name
         self.destinationLocation = CLLocationCoordinate2D(latitude: destination.latitude, longitude: destination.longitude)
         self.locationManager = locationManager
+        self.motionManager = MotionManager() // Inisialisasi MotionManager
         
         print("RouteMapViewModel: Tujuan - \(destination.name) di \(destination.latitude), \(destination.longitude)")
 
@@ -35,10 +42,49 @@ class RouteMapViewModel: ObservableObject {
         ))
         
         setupBindings()
+        setupMotionBindings()
         updateUserAndDestinationAnnotations() // Panggil sekali untuk anotasi tujuan awal
         // calculateRoute() akan dipanggil setelah lokasi pengguna pertama diterima
     }
-
+    
+    private func setupMotionBindings() {
+        motionManager.$stepsSinceSessionStart
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] steps in
+                self?.sessionSteps = steps
+            }
+            .store(in: &cancellables)
+        motionManager.$caloriesBurnedThisSession
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] calories in
+                self?.sessionCalories = calories
+            }
+            .store(in: &cancellables)
+        motionManager.$motionError
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] error in
+                self?.motionError = error
+                if error != nil {
+                    print("RouteMapViewModel: Error gerakan: \(error!)")
+                }
+            }
+            .store(in: &cancellables)
+    }
+        
+    func startSessionTracking() {
+        print("RouteMapViewModel: Memulai sesi pelacakan langkah.")
+        locationManager.startUpdatingLocation() // Mulai update lokasi
+        locationManager.startUpdatingHeading() // Mulai update heading
+        motionManager.startTrackingSession() // Mulai tracking langkah
+    }
+    
+    func stopSessionTracking() {
+        print("RouteMapViewModel: Menghentikan sesi pelacakan langkah.")
+        locationManager.stopUpdatingLocation() // Hentikan update lokasi
+        locationManager.stopUpdatingHeading() // Hentikan update heading
+        motionManager.stopTrackingSession() // Hentikan tracking langkah
+    }
+    
     private func setupBindings() {
         locationManager.$currentLocation
             .compactMap { $0 }

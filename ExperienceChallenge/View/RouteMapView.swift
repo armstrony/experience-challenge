@@ -7,11 +7,11 @@ struct RouteMapView: View {
     @StateObject var viewModel: RouteMapViewModel
     @Environment(\.dismiss) var dismiss
     // @State private var showingArrivalAlert = false // Tidak perlu lagi, dikontrol oleh viewModel.hasArrived
-
+    
     init(destinationShop: CoffeeShop, locationManager: LocationManager) {
         _viewModel = StateObject(wrappedValue: RouteMapViewModel(destination: destinationShop, locationManager: locationManager))
     }
-
+    
     var body: some View {
         ZStack(alignment: .top) {
             // Menggunakan initializer Map baru dengan MapContentBuilder
@@ -22,7 +22,7 @@ struct RouteMapView: View {
                     MapPolyline(route.polyline)
                         .stroke(Color.blue.opacity(0.8), lineWidth: 6)
                 }
-
+                
                 // Anotasi untuk Tujuan (Coffee Shop)
                 // Asumsi 'annotationItems' sekarang hanya berisi tujuan, atau kita filter
                 // Atau lebih baik, ViewModel menyediakan data anotasi yang sudah siap.
@@ -48,7 +48,7 @@ struct RouteMapView: View {
                     // Marker(item.name, systemImage: "mappin.and.ellipse", coordinate: item.coordinate)
                     //    .tint(item.tint)
                 }
-
+                
                 // Anotasi untuk Lokasi Pengguna dengan Arah Hadap
                 // Ambil lokasi pengguna dari viewModel.currentUserLocation
                 if let userCoordinate = viewModel.userLocation?.coordinate {
@@ -61,30 +61,60 @@ struct RouteMapView: View {
                             }
                     }
                 }
-
-            } // Akhir dari Map View
-
-            // Tampilkan ETA di atas peta
-            if let etaText = viewModel.ETA {
-                Text(etaText)
-                    .font(viewModel.hasArrived ? .headline.bold() : .caption)
-                    .foregroundColor(viewModel.hasArrived ? .green : .primary)
-                    .padding(10)
-                    .background(.ultraThinMaterial)
-                    .clipShape(Capsule())
+            }
+            //            .ignoresSafeArea(edges: .top) // Mengabaikan safe area di bagian bawah untuk Map
+            // Akhir dari Map View
+            
+            // Overlay untuk Info Steps, Calories, dan Tombol Exit
+            VStack { // VStack untuk mengatur posisi overlay
+                if viewModel.motionManager.isPedometerAvailable {
+                    ActivityOverlayView(
+                        steps: viewModel.sessionSteps,
+                        calories: viewModel.sessionCalories,
+                        onExit: {
+                            print("Tombol Exit di ActivityOverlay ditekan.")
+                            dismiss()
+                        }
+                    )
                     .padding(.top, 8)
-                    .shadow(radius: 2)
+                    .padding(.horizontal)
+                } else if let motionError = viewModel.motionError {
+                    Text("Motion Error: \(motionError)") // Tampilkan error jika pedometer tidak tersedia
+                        .font(.caption)
+                        .foregroundColor(.red)
+                        .padding()
+                        .background(.thinMaterial)
+                        .cornerRadius(8)
+                        .padding(.top, 8)
+                        .padding(.horizontal)
+                    
+                }
+                
+                Spacer() // Mendorong ActivityOverlayView ke atas
+                
+                // ETA Display
+                //                if let etaText = viewModel.ETA, !viewModel.hasArrived {
+                //                    Text(etaText)
+                //                        .font(viewModel.hasArrived ? .headline.bold() : .caption)
+                //                        .foregroundColor(viewModel.hasArrived ? .green : .primary)
+                //                        .padding(10)
+                //                        .background(.ultraThinMaterial)
+                //                        .clipShape(Capsule())
+                //                        .shadow(radius: 2)
+                //                        .padding(.bottom, 20)
+                //                }
             }
         }
-        .navigationTitle("Rute ke \(viewModel.annotationItems.first(where: {$0.name != "Lokasi Saya"})?.name ?? "Tujuan")")
-        .navigationBarTitleDisplayMode(.inline)
+        //        .navigationTitle("Rute ke \(viewModel.annotationItems.first(where: {$0.name != "Lokasi Saya"})?.name ?? "Tujuan")")
+        //        .navigationBarTitleDisplayMode(.inline)
+        .toolbar(.hidden, for: .navigationBar) // Sembunyikan toolbar navigasi
         .onAppear {
-            print("RouteMapView: onAppear")
-            viewModel.startUpdatingUserHeading()
+            print("RouteMapView: onAppear. Memulai pelacakan sesi.")
+            viewModel.startSessionTracking() // Memulai semua pelacakan
         }
         .onDisappear {
-            print("RouteMapView: onDisappear")
-            viewModel.stopUpdatingUserHeading()
+            print("RouteMapView: onDisappear. Menghentikan pelacakan sesi.")
+            viewModel.stopSessionTracking() // Menghentikan semua pelacakan
         }
         .alert("Telah Sampai!", isPresented: $viewModel.hasArrived) {
             Button("Kembali ke Home", role: .cancel) {

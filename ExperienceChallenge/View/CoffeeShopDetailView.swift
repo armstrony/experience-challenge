@@ -121,12 +121,11 @@ struct CoffeeShopDetailView: View {
                         .foregroundColor(.white)
                         .padding()
                         .frame(maxWidth: .infinity)
-                        .background(Color.accentColor) // Atau warna solid Anda
+                        .background(Color.brownapp) // Atau warna solid Anda
                         .cornerRadius(12)
                 }
                 .padding(.horizontal, 20)
-                .padding(.top, 12)
-                .padding(.bottom, (UIApplication.shared.connectedScenes.first as? UIWindowScene)?.windows.first?.safeAreaInsets.bottom ?? 10 + 10)
+                .padding(.top, 10)
             }
             .background(Color(UIColor.systemGray6)) // Latar belakang putih sedikit abu (seperti .secondarySystemBackground)
             //            .ignoresSafeArea(edges: .bottom)
