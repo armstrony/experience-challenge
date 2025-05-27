@@ -6,7 +6,7 @@ import CoreLocation
 struct RouteMapView: View {
     @StateObject var viewModel: RouteMapViewModel
     @Environment(\.dismiss) var dismiss
-    // @State private var showingArrivalAlert = false // Tidak perlu lagi, dikontrol oleh viewModel.hasArrived
+    @State private var showingExitConfirmationAlert: Bool = false
     
     init(destinationShop: CoffeeShop, locationManager: LocationManager) {
         _viewModel = StateObject(wrappedValue: RouteMapViewModel(destination: destinationShop, locationManager: locationManager))
@@ -72,8 +72,8 @@ struct RouteMapView: View {
                         steps: viewModel.sessionSteps,
                         calories: viewModel.sessionCalories,
                         onExit: {
-                            print("Tombol Exit di ActivityOverlay ditekan.")
-                            dismiss()
+                            print("RouteMapView: Tombol EXIT di ActivityOverlay ditekan, menampilkan alert konfirmasi.")
+                            self.showingExitConfirmationAlert = true // <--- SEKARANG MENAMPILKAN ALERT
                         }
                     )
                     .padding(.top, 8)
@@ -116,13 +116,37 @@ struct RouteMapView: View {
             print("RouteMapView: onDisappear. Menghentikan pelacakan sesi.")
             viewModel.stopSessionTracking() // Menghentikan semua pelacakan
         }
-        .alert("Telah Sampai!", isPresented: $viewModel.hasArrived) {
+        .alert("You've Arrived", isPresented: $viewModel.hasArrived) {
             Button("Kembali ke Home", role: .cancel) {
                 dismiss()
             }
         } message: {
-            Text("Anda telah tiba di sekitar \(viewModel.annotationItems.first(where: {$0.name != "Lokasi Saya"})?.name ?? "tujuan"). Selamat menikmati!")
+            // Pesan alert sekarang akan menampilkan steps dan calories sesi ini
+                   let stepsFormatted = String(format: "%.0f", Double(viewModel.sessionSteps)) // Pastikan sessionSteps adalah tipe yang benar
+                   let caloriesFormatted = String(format: "%.0f", viewModel.sessionCalories)
+
+                   Text("""
+                   Congratulations! 🎉
+                   You've taken \(stepsFormatted) steps dan burned \(caloriesFormatted) kcal.
+                   
+                   Enjoy Your Coffee!
+                   """)
         }
+        .alert("Exit Confirmation", isPresented: $showingExitConfirmationAlert) {
+                    Button("No", role: .cancel) {
+                        // Tidak melakukan apa-apa, alert akan tertutup
+                        print("RouteMapView: Keluar dari peta dibatalkan.")
+                    }
+                    Button("Yes", role: .destructive) {
+                        // Aksi untuk keluar dari peta
+                        print("RouteMapView: Pengguna mengkonfirmasi keluar dari peta.")
+                        dismiss() // Menutup RouteMapView dan kembali ke CoffeeShopDetailView
+                                  // Jika Anda ingin popToRoot dari sini juga, panggil navigationRouter.popToRoot()
+                                  // Tapi biasanya tombol "EXIT" di peta hanya kembali satu layar.
+                    }
+                } message: {
+                    Text("Are you sure to cancel this journey?")
+                }
     }
 }
 
