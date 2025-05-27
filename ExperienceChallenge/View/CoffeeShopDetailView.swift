@@ -127,13 +127,9 @@ struct CoffeeShopDetailView: View {
                 .padding(.horizontal, 20)
                 .padding(.top, 10)
             }
-            .background(Color(UIColor.systemGray6)) // Latar belakang putih sedikit abu (seperti .secondarySystemBackground)
-            //            .ignoresSafeArea(edges: .bottom)
+            .ignoresSafeArea(edges: .bottom)
             
-        } // Akhir dari ZStack
-        /*.navigationBarBackButtonHidden(false)*/ // Kita tetap sembunyikan tombol default
-        .toolbarBackground(.visible, for: .navigationBar) // Make the background visible
-        .toolbarColorScheme(.dark, for: .navigationBar) // This tells iOS the bar is dark, so foreground items (like back button) should be light (white)
+        } // Akhir dari ZStack    }
     }
 }
 
